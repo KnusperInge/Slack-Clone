@@ -39,7 +39,19 @@ $slack-clone-theme: mat.define-light-theme(
 html,
 body {
   height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 body {
   margin: 0;
+}
+* {
+  --lila: #541554;
+  --white: #ffffff;
+  --darkgray: #34353a;
+}
+
+.bbm {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.616);
 }

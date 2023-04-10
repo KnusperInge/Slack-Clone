@@ -1,0 +1,24 @@
+<main>
+  <section>
+    <h2>Sign Up</h2>
+    <div class="namefield">
+      <mat-form-field class="example-full-width">
+        <mat-label>firstName</mat-label>
+        <input matInput type="text" required="true" [(ngModel)]="user.firstName">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>lastName</mat-label>
+        <input matInput type="text" required="true" [(ngModel)]="user.lastName">
+      </mat-form-field>
+    </div>
+    <mat-form-field class="fw-100">
+      <mat-label>email</mat-label>
+      <input matInput type="email" required="true" [(ngModel)]="user.email">
+    </mat-form-field>
+    <mat-form-field class="fw-100">
+      <mat-label>password</mat-label>
+      <input matInput type="text" required="true" [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-button class="fw-100" (click)="createAcc()"> Sign Up</button>
+  </section>
+</main>
