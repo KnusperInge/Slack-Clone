@@ -7,13 +7,14 @@ import { Subject, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class AuthService {
   userRef: any;
-  CurrentUser: any;
+  CurrentUser: BehaviorSubject<string>;
   constructor(
     private auth: AngularFireAuth,
-    db: AngularFirestore,
+    private db: AngularFirestore,
     private router: Router
   ) {
     this.userRef = db.collection('Users');
+    this.CurrentUser = new BehaviorSubject('');
   }
 
   //Sign Up
@@ -30,14 +31,16 @@ export class AuthService {
   async signIn(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password).then((res) => {
       console.log('successfully logged in', res.user.uid);
-      this.router.navigate(['home']);
+      // this.searchUser(res);
+      // this.router.navigate(['home']);
     });
   }
 
   //LogOut
   logOut() {
     this.auth.signOut();
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
+    console.log('Ausgelogt');
   }
 
   //new User
@@ -55,9 +58,9 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         state.next(true);
+        this.searchUser(user.uid);
         user.getIdToken().then((idToken) => {
-          this.CurrentUser = new BehaviorSubject<string>(idToken);
-
+          //  this.CurrentUser = new BehaviorSubject<string>(idToken);  gibt den kompletten anmelde Token zurück
           this.router.navigate(['home']);
         });
       } else {
@@ -66,5 +69,20 @@ export class AuthService {
       }
     });
     return state.asObservable();
+  }
+
+  //search user with uid
+  searchUser(uid) {
+    this.db
+      .collection('Users', (ref) => ref.where('uid', '==', uid))
+      .valueChanges()
+      .subscribe((User: any) => {
+        this.CurrentUser.next(User[0].firstName);
+      });
+  }
+
+  //return Current user
+  getUser() {
+    return this.CurrentUser.asObservable();
   }
 }

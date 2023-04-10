@@ -19,10 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/authService';
 import { UserService } from './services/userService';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+
 import { Protection } from './shared/protectionGuard';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { Protection } from './shared/protectionGuard';
     MatExpansionModule,
     MatInputModule,
     MatFormFieldModule,
+    MatMenuModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],
