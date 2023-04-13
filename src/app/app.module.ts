@@ -20,11 +20,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/authService';
 import { UserService } from './services/userService';
 
 import { Protection } from './shared/protectionGuard';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { Protection } from './shared/protectionGuard';
     LoginComponent,
     PlaceholderComponent,
     SingupComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { Protection } from './shared/protectionGuard';
     MatInputModule,
     MatFormFieldModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],

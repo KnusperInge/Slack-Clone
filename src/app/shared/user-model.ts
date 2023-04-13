@@ -18,6 +18,7 @@ export class User {
     this.zipCode = Obj ? Obj.zipCode : '';
     this.city = Obj ? Obj.city : '';
     this.uid = Obj ? Obj.uid : '';
+    this.id = Obj ? Obj.id : '';
   }
   toJSON() {
     return {

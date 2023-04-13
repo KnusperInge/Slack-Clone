@@ -1,0 +1,64 @@
+<main>
+  <div class="headline">
+    <h1> Deine Daten </h1>
+
+    <h3 *ngIf="!EditeMode">(Bearbeitungsmodus)</h3>
+  </div>
+  <div class="Userdates">
+    <div class=" leftUser">
+
+      <div class="Namefield">
+        <mat-form-field class="example-full-width">
+          <mat-label>First Name</mat-label>
+          <input [disabled]="EditeMode" matInput type="text" [(ngModel)]="currentUser.firstName" required="true">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input [disabled]="EditeMode" matInput type="text" [(ngModel)]="currentUser.lastName" required="true">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="fw-60">
+        <mat-label>Street & No.</mat-label>
+        <input [disabled]="EditeMode" matInput type="text" required="true" [(ngModel)]="currentUser.street">
+      </mat-form-field>
+
+      <div class=" Adressfield">
+        <mat-form-field class="">
+          <mat-label>Zipcode</mat-label>
+          <input [disabled]="EditeMode" matInput type="text" required="true" [(ngModel)]="currentUser.zipCode">
+        </mat-form-field>
+        <mat-form-field class="">
+          <mat-label>City</mat-label>
+          <input [disabled]="EditeMode" matInput type="text" required="true" [(ngModel)]="currentUser.city">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="fw-60">
+        <mat-label>email</mat-label>
+        <input [disabled]="EditeMode" matInput type="email" required="true" [(ngModel)]="currentUser.email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="fw-60">
+        <mat-label>Birth Date</mat-label>
+        <input [disabled]="EditeMode" matInput [matDatepicker]="picker" [(ngModel)]="birthDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+
+
+    <div class="rightUser">
+      <img src="" alt="">
+      <div class="btnbox">
+        <button mat-raised-button color="primary" *ngIf="EditeMode"
+          (click)="editUser()"><mat-icon>edit</mat-icon>Edit</button>
+        <button mat-raised-button color="primary" *ngIf="!EditeMode"
+          (click)="updateUser()"><mat-icon>check_circle</mat-icon>Save</button>
+      </div>
+    </div>
+  </div>
+
+</main>
