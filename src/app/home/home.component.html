@@ -4,22 +4,19 @@
       <mat-icon>home</mat-icon>
       <h1>Slack-Clone</h1>
     </div>
-    <mat-accordion>
-      <mat-expansion-panel [expanded]="true" (opened)="panelOpenState =true" (closed)="panelOpenState =false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Channels
-          </mat-panel-title>
-        </mat-expansion-panel-header>
 
-        <p class="chaneles">Allgemein</p>
-        <p class="chaneles">Angular</p>
-        <p class="chaneles">JavaScript</p>
-        <p class="chaneles">Sonstiges</p>
 
-      </mat-expansion-panel>
 
-    </mat-accordion>
+    Channels <button (click)="openDialog()"><mat-icon>edit</mat-icon></button>
+
+
+    <div *ngFor=" let item of channels">
+      <a routerLink="{{item.id}}">#{{item.name}}</a>
+    </div>
+    <button (click)="send()">test</button>
+
+
+
 
 
   </mat-drawer>

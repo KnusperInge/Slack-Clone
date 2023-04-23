@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SingupComponent } from './singup/singup.component';
 import { Protection } from './shared/protectionGuard';
 import { UserComponent } from './user/user.component';
+import { ChannelComponent } from './channel/channel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,8 +15,9 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [Protection],
     children: [
-      { path: 'user', component: PlaceholderComponent },
-      { path: '', component: UserComponent },
+      { path: ':id', component: PlaceholderComponent },
+      { path: 'user', component: UserComponent },
+      { path: '', component: ChannelComponent },
     ],
   },
   { path: 'login', component: LoginComponent },

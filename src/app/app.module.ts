@@ -23,11 +23,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { environment } from 'src/environments/environment';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from './services/authService';
-import { UserService } from './services/userService';
+import { ChannelService } from './services/channelService';
 
 import { Protection } from './shared/protectionGuard';
 import { UserComponent } from './user/user.component';
+import { CreateNewChannelComponent } from './create-new-channel/create-new-channel.component';
+import { ChannelComponent } from './channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { UserComponent } from './user/user.component';
     PlaceholderComponent,
     SingupComponent,
     UserComponent,
+    CreateNewChannelComponent,
+    ChannelComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,10 +60,12 @@ import { UserComponent } from './user/user.component';
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
+    MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
   ],
-  providers: [AuthService, UserService, Protection],
+  providers: [AuthService, ChannelService, Protection],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
