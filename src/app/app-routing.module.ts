@@ -15,9 +15,9 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [Protection],
     children: [
-      { path: ':id', component: PlaceholderComponent },
+      { path: '', component: PlaceholderComponent },
       { path: 'user', component: UserComponent },
-      { path: '', component: ChannelComponent },
+      { path: ':id', component: ChannelComponent },
     ],
   },
   { path: 'login', component: LoginComponent },

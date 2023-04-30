@@ -4,10 +4,17 @@
     <h2># Channelname</h2>
   </header>
   <div class="chat">
-    chat
+    <div *ngFor="let message of activeChannel" class="message">
+      <div class="create">
+        <span>{{message.creatation | date}}</span>
+        <span class="name">{{message.creator}}</span>
+      </div>
+      <span class="msg">{{message.message}}</span>
+      <span>{{message.comments.length}} Antworten</span>
+    </div>
   </div>
   <div class="messagebox">
-    message
-    <button> send</button>
+    <input type="text" [(ngModel)]="msg">
+    <button (click)="sendMessage()"> send</button>
   </div>
 </main>

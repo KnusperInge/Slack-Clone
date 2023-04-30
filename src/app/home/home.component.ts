@@ -32,8 +32,4 @@ export class HomeComponent implements OnInit {
   openDialog() {
     this.dialog.open(CreateNewChannelComponent);
   }
-
-  send() {
-    this.ChannelS.createMessage();
-  }
 }

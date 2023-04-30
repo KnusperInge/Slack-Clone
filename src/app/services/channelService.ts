@@ -36,15 +36,20 @@ export class ChannelService {
     );
   }
 
-  createMessage() {
-    this.channelRef
-      .doc('Fsv2RoETod0ycEDaoi82')
-      .collection('messages')
-      .add({
-        creator: 'Martin',
-        // creatation: new Date().getTime,
-        message: 'hallo ich bins',
-        comments: ['Willkommen', 'Hallo'],
-      });
+  searchChannel(id: string) {
+    const docRef = this.db
+      .collection('Channels')
+      .doc(id)
+      .collection('messages');
+    return docRef.valueChanges();
+  }
+
+  createMessage(id: string, UserName: string, msg: string, date: number) {
+    this.channelRef.doc(id).collection('messages').add({
+      creator: UserName,
+      creatation: date,
+      message: msg,
+      comments: [],
+    });
   }
 }
