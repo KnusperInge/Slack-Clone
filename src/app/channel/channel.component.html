@@ -1,20 +1,58 @@
 <main>
+  <div class="channel">
+    <header>
+      <h2># {{activeChannelName}}</h2>
+    </header>
+    <div class="chat">
+      <div *ngFor="let message of activeChannel" class="message" (click)="openThread(message.msgID)">
+        <div class="create">
+          <span class="name">{{message.creator}}</span>
+          <span>{{message.createdOn | date:'dd.MM.yyyy HH:mm:ss'}}</span>
 
-  <header>
-    <h2># Channelname</h2>
-  </header>
-  <div class="chat">
-    <div *ngFor="let message of activeChannel" class="message">
-      <div class="create">
-        <span>{{message.creatation | date}}</span>
-        <span class="name">{{message.creator}}</span>
+        </div>
+        <span class="msg">{{message.message}}</span>
+        <span>{{message.comments.length}} Antworten</span>
       </div>
-      <span class="msg">{{message.message}}</span>
-      <span>{{message.comments.length}} Antworten</span>
+    </div>
+    <div class="messagebox">
+      <textarea type="text" placeholder="Nachricht an #{{activeChannelName}}" [(ngModel)]="msg"></textarea>
+      <button mat-raised-button color="primary" (click)="sendMessage()"> send</button>
     </div>
   </div>
-  <div class="messagebox">
-    <input type="text" [(ngModel)]="msg">
-    <button (click)="sendMessage()"> send</button>
+
+  <div class="threads" *ngIf="activateThread">
+
+    <div class="thead">
+      <div class="theadName">
+        <h2>Thread</h2>
+        <span>#{{activeChannelName}} </span>
+      </div>
+      <mat-icon class="icon" (click)="closeThread()">close</mat-icon>
+    </div>
+
+    <div class="tmsg" *ngIf="currentThread!=undefined">
+      <div class="tmsghead">
+        <h3>{{currentThread.creator}}</h3>
+        <span>{{currentThread.createdOn | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+      </div>
+      <span class="thread">{{currentThread.message}}</span>
+      <div class="line">
+        {{currentThread.comments.length}} Antworten
+      </div>
+    </div>
+    <div class="Threadchat" *ngIf="currentThread!=undefined">
+      <div *ngFor="let message of currentThread.comments" class="message">
+        <div class="create">
+          <span class="name">{{message.creator}}</span>
+          <span>{{message.createdOn | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+        </div>
+        <span class="msg">{{message.message}}</span>
+
+      </div>
+    </div>
+    <div class="Threadmessagebox">
+      <textarea type="text" placeholder="Nachricht an Thread #{{activeChannelName}}" [(ngModel)]="thread"></textarea>
+      <button mat-raised-button color="primary" (click)="sendThread()"> send</button>
+    </div>
   </div>
 </main>

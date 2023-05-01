@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Channelmodel } from '../shared/channel.model';
 import { map } from 'rxjs/operators';
+import { Message } from '../shared/message.model';
 
 @Injectable()
 export class ChannelService {
@@ -36,7 +37,12 @@ export class ChannelService {
     );
   }
 
-  searchChannel(id: string) {
+  searchChannel(id) {
+    const docRef = this.channelRef.doc(id);
+    return docRef.valueChanges();
+  }
+
+  searchChannelMessages(id: string) {
     const docRef = this.db
       .collection('Channels')
       .doc(id)
@@ -44,12 +50,35 @@ export class ChannelService {
     return docRef.valueChanges();
   }
 
-  createMessage(id: string, UserName: string, msg: string, date: number) {
-    this.channelRef.doc(id).collection('messages').add({
-      creator: UserName,
-      creatation: date,
-      message: msg,
-      comments: [],
-    });
+  createMessage(id: string, msg: any) {
+    this.channelRef
+      .doc(id)
+      .collection('messages')
+      .add(msg)
+      .then((docRef) => {
+        this.channelRef
+          .doc(id)
+          .collection('messages')
+          .doc(docRef.id)
+          .update({ msgID: docRef.id });
+      });
+  }
+
+  //Thread functions
+
+  getThread(channelID, msgID) {
+    return this.channelRef
+      .doc(channelID)
+      .collection('messages')
+      .doc(msgID)
+      .valueChanges();
+  }
+
+  addThread(channelID, msgID, thread: any) {
+    this.channelRef
+      .doc(channelID)
+      .collection('messages')
+      .doc(msgID)
+      .update({ comments: thread });
   }
 }

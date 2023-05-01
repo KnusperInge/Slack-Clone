@@ -2,6 +2,7 @@ main {
   height: 100%;
   max-height: 100%;
   width: 100%;
+  display: flex;
 
   header {
     height: 20px;
@@ -14,20 +15,32 @@ main {
       margin: 0;
     }
   }
+  .channel,
+  .threads {
+    width: 100%;
+  }
   .chat {
     height: calc(75% - 40px);
     width: calc(100% - 40px);
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
     .message {
       width: 100%;
       padding-top: 30px;
       padding-bottom: 30px;
-      border-top: 1px solid white;
+      border-top: 1px solid rgba(255, 255, 255, 0.103);
       position: relative;
       display: flex;
+      gap: 10px;
       flex-direction: column;
       color: white;
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.103);
+      }
+      span {
+        padding-left: 10px;
+      }
       .create {
         padding-left: 10px;
         padding-right: 10px;
@@ -45,15 +58,150 @@ main {
     }
   }
   .messagebox {
-    border-top: 1px solid white;
     height: calc(17% - 40px);
     width: calc(100% - 40px);
     padding: 20px;
     position: relative;
+    textarea {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      padding: 10px;
+      resize: none;
+      border-radius: 8px;
+      background-color: var(--darkgray);
+      color: white;
+      border: 1px solid var(--lightgray);
+    }
     button {
       position: absolute;
-      right: 2%;
-      bottom: 5%;
+      right: 25px;
+      bottom: 25px;
+    }
+  }
+
+  // Threads
+  .threads {
+    border-left: 1px solid rgba(255, 255, 255, 0.103);
+
+    height: 100%;
+    max-height: 100%;
+    .thead {
+      height: 20px;
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 20px;
+      border-bottom: 1px solid white;
+      h2 {
+        margin: 0;
+      }
+      span {
+        color: rgba(255, 255, 255, 0.103);
+        font-size: 18px;
+      }
+      .theadName {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+      }
+      .icon {
+        cursor: pointer;
+        &:hover {
+          color: darkred;
+        }
+      }
+    }
+    .tmsg {
+      width: calc(100% - 40px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: white;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.103);
+
+      .tmsghead {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+
+        h3 {
+          margin: 0;
+        }
+        span {
+          color: rgba(255, 255, 255, 0.103);
+          font-size: 14px;
+        }
+      }
+      .thread {
+        margin-bottom: 20px;
+      }
+      .line {
+        position: absolute;
+        bottom: -12px;
+        background-color: var(--darkgray);
+        padding: 5px;
+      }
+    }
+    .Threadchat {
+      margin-top: 20px;
+      height: calc(58% - 40px);
+      width: calc(100% - 40px);
+      padding: 20px;
+      overflow-y: auto;
+      .message {
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.103);
+        position: relative;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        color: white;
+
+        span {
+          padding-left: 10px;
+        }
+        .create {
+          padding-left: 10px;
+          padding-right: 10px;
+          position: absolute;
+          top: -12px;
+          left: 40%;
+          display: flex;
+          gap: 10px;
+          font-size: 16px;
+          font-weight: 600;
+          color: rgba(211, 211, 211, 0.596);
+
+          background-color: var(--darkgray);
+        }
+      }
+    }
+    .Threadmessagebox {
+      height: calc(17% - 40px);
+      width: calc(100% - 40px);
+      padding: 20px;
+      position: relative;
+      textarea {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        padding: 10px;
+        resize: none;
+        border-radius: 8px;
+        background-color: var(--darkgray);
+        color: white;
+        border: 1px solid var(--lightgray);
+      }
+      button {
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+      }
     }
   }
 }

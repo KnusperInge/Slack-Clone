@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this.userS.getUserName().subscribe((u) => (this.userName = u));
     this.ChannelS.getAllChannels().subscribe((data) => {
       this.channels = data;
-      console.log(this.channels);
     });
   }
   logOut() {
